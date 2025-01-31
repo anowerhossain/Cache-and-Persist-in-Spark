@@ -1,6 +1,10 @@
-## Cache-and-Persist-in-Spark ( Optimization )
+🚀 Apache Spark Optimization: cache() vs persist()
 
-`cache()` and `persist()` in Apache Spark are used to store intermediate results in memory to speed up computation. However, they have key differences in how they store the data and their flexibility.
+Apache Spark provides two key methods to optimize performance by reducing recomputation and improving execution speed ⚡:
+
+- `cache()` → Stores data only in memory 🧠.
+- `persist(storageLevel)` → Allows different storage levels like memory, disk, or both 💾.
+- Using these methods efficiently can save processing time ⏳ and enhance Spark job performance 🔥.
 
 ### cache() 🧠
 
@@ -65,6 +69,13 @@ df4.write.mode("overwrite").parquet("hdfs://data/processed_sales")  # Uses cache
 - When df4.write() runs, it uses the cached version of df3, avoiding recomputation. 
 - Faster execution since Spark skips redundant steps.
 - If df3 is too large for memory, we use persist() instead of cache() to allow disk storage:
+  
   ```python
   df3 = df2.groupBy("category").sum("sales").persist(StorageLevel.MEMORY_AND_DISK)  # Store in memory/disk
   ```
+
+  🔥 Performance Optimization Tips
+✅ Use cache() for iterative processing (when the same data is accessed multiple times).
+✅ Use persist() for large datasets that may not fit into memory.
+✅ Unpersist data 🧹 (df.unpersist()) when it's no longer needed to free memory.
+
