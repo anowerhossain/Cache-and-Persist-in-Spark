@@ -74,8 +74,11 @@ df4.write.mode("overwrite").parquet("hdfs://data/processed_sales")  # Uses cache
   df3 = df2.groupBy("category").sum("sales").persist(StorageLevel.MEMORY_AND_DISK)  # Store in memory/disk
   ```
 
-  🔥 Performance Optimization Tips
+🔥 Performance Optimization Tips
+
 ✅ Use cache() for iterative processing (when the same data is accessed multiple times).
+
 ✅ Use persist() for large datasets that may not fit into memory.
+
 ✅ Unpersist data 🧹 (df.unpersist()) when it's no longer needed to free memory.
 
