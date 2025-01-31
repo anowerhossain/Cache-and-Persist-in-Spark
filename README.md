@@ -1,4 +1,4 @@
-🚀 Apache Spark Optimization: cache() vs persist()
+## 🚀 Apache Spark Optimization: cache() vs persist()
 
 Apache Spark provides two key methods to optimize performance by reducing recomputation and improving execution speed ⚡:
 
